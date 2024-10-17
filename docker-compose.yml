@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  line-notify-server:
+    build: .
+    container_name: line-notify-server
+    ports:
+      - "3000:3000"  # กำหนด port ที่จะ expose (แทนที่ 3000 ด้วย port ที่คุณใช้ในโปรเจ็กต์)
+    environment:
+      - NODE_ENV=production  # กำหนด environment (เลือกได้ระหว่าง production หรือ development)
+      - LINE_NOTIFY_TOKEN=your_line_notify_token_here  # เพิ่ม LINE Notify token ของคุณ
+    volumes:
+      - .:/app  # ผูกโฟลเดอร์ปัจจุบันเข้ากับ /app ใน container
+    command: npm start  # คำสั่งที่ใช้รันเซิร์ฟเวอร์ เช่น "npm start" หรือ "node index.js"
+
